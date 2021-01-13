@@ -98,7 +98,8 @@ router.get('/delivery-success/:id', verifyLogin, (req, res) => {
   productHelpers.deliverProduct(req.params.id).then((userData) => {
     // console.log(data);
     var msg = "Your Order is Devliverd Successfully."
-    fast2sms.sendMessage()
+    var options = { authorization: process.env.API_KEY, message: msg, numbers: [userData.mobile] }
+    fast2sms.sendMessage(options)
     res.redirect('/admin/all-orders')
   })
 })
