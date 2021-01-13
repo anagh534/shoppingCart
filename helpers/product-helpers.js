@@ -99,7 +99,8 @@ module.exports = {
             order.status='Deliverd';
             // console.log(order);
             await db.get().collection(collection.ORDER_COLLECTION).insertOne(order).then(()=>{
-                resolve()
+                // console.log(order);
+                resolve(order.deliveryDetails)
             })
         })
     },
