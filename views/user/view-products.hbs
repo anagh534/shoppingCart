@@ -1,0 +1,28 @@
+<section>
+    <div class="container mt-5">
+        <div class="row">
+            {{#each products}}
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 text-center pt-4 main">
+                <div class="card" style="width: 14rem; height: 20rem;">
+                    <img style="height: 8rem; width:9rem;" src="/product-image/{{this._id}}.jpg"
+                        class="card-img-top ml-5  mt-2" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{this.name}}</h5>
+                        <p>Rs.{{this.price}}/-</p>
+                        <buttion class="btn btn-primary" onclick="addToCart('{{this._id}}')">Add to Cart</buttion>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</section>
+<script>
+    function goto(){
+        var count=document.getElementById('cart-count').innerHTML
+        if(count==='0'){
+            location.href='/'
+            alert()
+        }
+    }
+</script>

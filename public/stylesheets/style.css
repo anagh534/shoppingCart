@@ -1,0 +1,10 @@
+@media(max-width:400px){
+    .main{
+        margin-left: 3.6rem;
+    }
+}
+@media(max-width:400px){
+    .main{
+        width: 4rem;
+    }
+}

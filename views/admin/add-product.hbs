@@ -1,0 +1,33 @@
+<style>
+    .input {
+        width: 700px;
+        border: solid 2px black;
+    }
+</style>
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h2 class="text-center">Add proudcts</h2>
+                <form action="/admin/add-proudct" enctype="multipart/form-data" method="POST">
+                    <label for="">Name</label>
+                    <input type="text" name="Name" required class="form=control input mt-3">
+                    <br>
+                    <label for="">Catogory</label>
+                    <input type="text" name="category" required class="form=control input mt-3">
+                    <br>
+                    <label for="">Discription</label>
+                    <input type="text" name="discription" required class="form=control input mt-3">
+                    <br>
+                    <label for="">price</label>
+                    <input type="text" name="price" required class="form=control input mt-3">
+                    <br>
+                    <label for="">Image</label>
+                    <input type="file" name="img" required class="form=control input mt-3">
+                    <br>
+                    <button type="submit" class="btn btn-success mt-4">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

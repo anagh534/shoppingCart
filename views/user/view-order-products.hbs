@@ -1,0 +1,32 @@
+<section>
+    <div>
+        <table class="table table-bordered mt-5">
+            <thead>
+                <tr>
+                    <th>Products</th>
+                    <th>Images</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each products}}
+                <tr>
+                    <td>{{this.product.name}}</td>
+                    <td><img src="/product-image/{{this.item}}.jpg" style="width: 5rem; height: 5rem;"></td>
+                    <td>{{this.product.price}}/-</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+        <p class="text-right mr-3 text-danger">Any problem: <a href="tel:+917994470795">+91 7994470795</a></p>
+</section>
+<style>
+    .data {
+        margin-left: 50%;
+        margin-right: 50%;
+    }
+
+    .table {
+        border: solid 2px;
+    }
+</style>

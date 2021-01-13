@@ -1,0 +1,20 @@
+<section>
+    <table class="table mt-5">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Mobile</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each users}}
+            <tr>
+                <td>{{this.Name}}</td>
+                <td>{{this.Email}}</td>
+                <td>{{this.mobile}}</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</section>
