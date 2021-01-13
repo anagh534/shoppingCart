@@ -112,7 +112,7 @@ module.exports = {
             order.status='Cancelled'
             // console.log(order);
             await db.get().collection(collection.ORDER_COLLECTION).insertOne(order).then(()=>{
-                resolve()
+                resolve(order.deliveryDetails)
             })
         })
     },
@@ -124,7 +124,7 @@ module.exports = {
             order.status='Packed'
             // console.log(order);
             await db.get().collection(collection.ORDER_COLLECTION).insertOne(order).then(()=>{
-                resolve()
+                resolve(order.deliveryDetails)
             })
         })
     },
@@ -136,7 +136,7 @@ module.exports = {
             order.status='Shipped'
             // console.log(order);
             await db.get().collection(collection.ORDER_COLLECTION).insertOne(order).then(()=>{
-                resolve()
+                resolve(order.deliveryDetails)
             })
         })
     }

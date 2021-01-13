@@ -105,18 +105,27 @@ router.get('/delivery-success/:id', verifyLogin, (req, res) => {
 })
 router.get('/cancel-this-order/:id', verifyLogin, (req, res) => {
   // console.log("called");
-  productHelpers.cancelOrder(req.params.id).then(() => {
+  productHelpers.cancelOrder(req.params.id).then((userData) => {
+    var msg = "Your Order is Cannceled."
+    var options = { authorization: process.env.API_KEY, message: msg, numbers: [userData.mobile] }
+    fast2sms.sendMessage(options)
     res.redirect('/admin/all-orders')
   })
 })
 router.get('/packed/:id', verifyLogin, (req, res) => {
   // console.log("called");
-  productHelpers.packOrder(req.params.id).then(() => {
+  productHelpers.packOrder(req.params.id).then((userData) => {
+    var msg = "Your Order is Packed Successfully."
+    var options = { authorization: process.env.API_KEY, message: msg, numbers: [userData.mobile] }
+    fast2sms.sendMessage(options)
     res.redirect('/admin/all-orders')
   })
 })
 router.get('/shipped/:id', (req, res) => {
-  productHelpers.shippedOrder(req.params.id).then(() => {
+  productHelpers.shippedOrder(req.params.id).then((userData) => {
+    var msg = "Your Order is Shipped Successfully."
+    var options = { authorization: process.env.API_KEY, message: msg, numbers: [userData.mobile] }
+    fast2sms.sendMessage(options)
     res.redirect('/admin/all-orders')
   })
 })
