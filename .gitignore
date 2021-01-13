@@ -1,4 +1,9 @@
-node_modules/
+# ignore files
+node_modules
 package-lock.json
-npm-debug.log
+public/product-images/*
 .env
+
+
+# but keep the folder
+!public/product-images/.gitkeep
