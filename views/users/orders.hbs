@@ -1,0 +1,28 @@
+<section>
+  <div style="overflow-x: auto;">
+    <table class="table mt-5">
+      <thead>
+        <tr>
+          <th>Date & Time</th>
+          <th scope="col">Address</th>
+          <th scope="col">Mobile</th>
+          <th scope="col">Total Amount</th>
+          <th>Payment Method</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each orders}}
+        <tr>
+          <td>{{this.date}}</td>
+          <td>{{this.deliveryDetails.address}}<span>,</span>{{this.deliveryDetails.pincode}}</td>
+          <td>{{this.deliveryDetails.mobile}}</td>
+          <td>{{this.totalAmount}}</td>
+          <td>{{this.paymentMethod}}</td>
+          <td>{{this.status}}</span></td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</section>

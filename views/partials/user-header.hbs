@@ -1,0 +1,60 @@
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="/">Easy Cart</a>
+        {{#if user}}
+        <a class="d-block txt" href="/cart" ><span class="text-light fontdown">Cart</span><span
+                class="badge badge-success" id="cart-count">{{count}}</span></a>
+        {{/if}}
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    {{#if user}}
+                    <a class="nav-link fontdown mt-1" href="/orders">Orders</a>
+                    {{/if}}
+                </li>
+            </ul>
+            <div class="dropdown d-none d-sm-none d-md-none d-lg-block">
+                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{#if user}}
+                    {{user.name}}
+                    {{else}}
+                    Account
+                    {{/if}}
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    {{#if user}}
+                    <a class="dropdown-item" href="/logout">Logout</a>
+                    {{else}}
+                    <a class="dropdown-item" href="/login">Login</a>
+                    <a class="dropdown-item" href="/signup">Signup</a>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+<style>
+    .fontdown {
+        font-size: .8rem;
+        text-decoration: none;
+    }
+
+    .txt {
+        text-decoration: none;
+    }
+
+    .txt:hover {
+        text-decoration: none;
+    }
+
+    .dropdownMenuButton:hover {
+        color: white;
+        background: #007bff;
+    }
+</style>

@@ -1,0 +1,28 @@
+<style>
+    .input {
+        width: 700px;
+        border: solid 2px black;
+    }
+</style>
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h2 class="text-center mt-5">Add proudcts</h2>
+                <form action="/admin/add-product" method="POST">
+                    <label for="name">Name</label>
+                    <input type="text" name="name" id="name" required class="form=control input mb-3">
+                    <label for="category">Category</label>
+                    <input type="text" name="category" id="category" required class="form=control input mb-3">
+                    <label for="discription">Discription</label>
+                    <input type="text" name="discription" id="discription" required class="form=control input mb-3">
+                    <label for="price">price</label>
+                    <input type="text" name="price" id="price" required class="form=control input mb-3">
+                    <label for="image">Image (url only)</label>
+                    <input type="text" name="image" id="image" required class="form=control input mb-3">
+                    <button type="submit" class="btn btn-success mt-4">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,145 @@
+<section>
+    <div class="container mt-5">
+        <form action="" id="checkout-form">
+            <div class="row">
+                <div class="col-md-6">
+                    <h2>Enter Delivery Details</h2><br>
+                    <div>
+                        <label for="address">Address</label>
+                        <input type="text" name="address" value="{{user.address}}" required id="address"
+                            class="form-control">
+
+                        <label for="pin">Pincode</label>
+                        <input type="number" name="pincode" value="{{user.pincode}}" required id="pin"
+                            class="form-control">
+
+                        <label for="mob">Mobile</label>
+                        <input type="tel" name="mobile" value="{{user.mobile}}" required id="mob" class="form-control">
+
+                        <input type="text" name="userId" value="{{user._id}}" hidden>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="container mt-5 checkout">
+                        <h6>Total Amount: Rs. {{this.total}}</h6>
+                        <hr>
+                        <div class="payment">
+                            <p>Payment Methods</p>
+                            <label class="radio-inline">
+                                <input type="radio" name="payment-method" required value="COD"> Cash on Delivery
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="payment-method" disabled required value="Online"> Online
+                                Payment
+                            </label>
+                            <br>
+                            <button type="submit" id="" class="btn btn-primary float-right">Checkout</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+<script>
+    $("#checkout-form").submit((e) => {
+        e.preventDefault()
+        $.ajax({
+            url: '/place-order',
+            method: 'post',
+            data: $('#checkout-form').serialize(),
+            success: (response) => {
+                if (response.success) {
+                    location.href = '/order-success'
+                } else {
+                    razorpayPayment(response)
+                }
+            }
+        })
+    })
+    function razorpayPayment(order) {
+        var options = {
+            "key": "rzp_test_skykilpdJoihjs", // Enter the Key ID generated from the Dashboard
+            "amount": order.amount + "paise", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+            "currency": "INR",
+            "name": "Easy Cart",
+            "description": "Thank you for using Easy cart",
+            //"image": "",
+            "order_id": order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+            "handler": function (response) {
+                verifyPayment(response.razorpay_payment_id, response.razorpay_order_id, response.razorpay_signature)
+                //alert(response.razorpay_payment_id);
+                //alert(response.razorpay_order_id);
+                //alert(response.razorpay_signature)
+            },
+            "prefill": {
+                "name": order.name,
+                "email": order.email,
+                "contact": order.mobile
+            },
+            "notes": {
+                "address": "Razorpay Corporate Office"
+            },
+            "theme": {
+                "color": "#3399cc"
+            }
+        };
+        var rzp1 = new Razorpay(options);
+        rzp1.on('payment.failed', function (response) {
+            //alert("Payment is Failed")
+            //alert(response.error.code);
+            //alert(response.error.description);
+            //alert(response.error.source);
+            //alert(response.error.step);
+            //alert(response.error.reason);
+            //alert(response.error.metadata.order_id);
+            //alert(response.error.metadata.payment_id);
+        });
+        rzp1.open();
+    }
+    function verifyPayment(payment_id, order_id, signature) {
+        $.ajax({
+            url: '/verify-payment',
+            data: {
+                payment_id,
+                order_id,
+                signature
+            },
+            method: 'post',
+            success: (response) => {
+                if (response.status) {
+                    location.href = '/order-success'
+                } else {
+                    location.href = "/payment-failed"
+                }
+            }
+        })
+    }
+</script>
+<style>
+    input[type=radio] {
+        width: 20px;
+        height: 20px;
+    }
+
+    label.radio-inline {
+        display: flex;
+        align-items: center;
+    }
+
+    .payment {
+        padding-bottom: 16px;
+    }
+
+    .checkout {
+        border: 1px solid;
+        border-radius: 3px;
+        padding: 3rem;
+    }
+
+    @media(max-width:610px) {
+        .checkout {
+            padding: 2rem;
+        }
+    }
+</style>

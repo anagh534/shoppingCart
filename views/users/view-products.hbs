@@ -1,0 +1,21 @@
+<section>
+    <div class="container mt-5">
+        <div class="row">
+            {{#each data}}
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 text-center pt-4 main">
+                <div class="card center p-2">
+                    <img src="{{this.image}}" class="card-img-top  mt-3" alt="">
+                    <div class="card-body">
+                        <h5 class="card-title">{{this.name}}</h5>
+                        <p class="text-success">₹{{this.price}}<span id="price"></span></p>
+                        <p class="card-text">{{this.discription}}</p>
+                        {{#if ../user}}
+                        <buttion class="btn btn-primary" onclick="addToCart('{{this._id}}')">Add to Cart</buttion>
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</section>

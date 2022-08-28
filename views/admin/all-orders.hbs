@@ -1,0 +1,45 @@
+<section>
+    <div class="mt-5 mb-5">
+        <table class="table mt-5" id="table">
+            <thead>
+                <tr>
+                    <th scope="col">Address+(pincode)</th>
+                    <th scope="col">Mobile</th>
+                    <th scope="col">Amount</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                    <th>Options</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each orders}}
+                <tr>
+                    <td>{{this.deliveryDetails.address}}<span>(</span>{{this.deliveryDetails.pincode}}<span>)</span>
+                    </td>
+                    <td>{{this.deliveryDetails.mobile}}</td>
+                    <td>{{this.totalAmount}}</td>
+                    <td>{{this.status}}</td>
+                    <td>{{this.date}}</td>
+                    <td>
+                        <a href="/admin/view-order-products/{{this._id}}" class="btn btn-primary mb-3">View Products</a>
+                        <br>
+                        <a href="/admin/status/{{this._id}}/cancelled" onclick="return confirm('Cancel this product ?')"
+                            class="btn btn-danger">Cancelled</a>
+                        <a href="/admin/status/{{this._id}}/packed" onclick="return confirm('Pack this product ?')"
+                            class="btn btn-warning">Packed</a>
+                        <a href="/admin/status/{{this._id}}/shipped" onclick="return confirm('Ship this product ?')"
+                            class="btn btn-dark">Shipped</a>
+                        <a href="/admin/status/{{this._id}}/delivered"
+                            onclick="return confirm('Deliver this product ?')" class="btn btn-success">Delivered</a>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</section>
+<script>
+    $(document).ready(function () {
+        $('#table').DataTable();
+    })
+</script>

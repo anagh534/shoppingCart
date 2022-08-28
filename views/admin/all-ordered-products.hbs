@@ -1,0 +1,34 @@
+<section>
+    <div>
+        <table class="table table-bordered mt-5">
+            <thead>
+                <tr>
+                    <th>Products</th>
+                    <th>Image</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each products}}
+                <tr>
+                    <td>{{this.product.name}}</td>
+                    <td><img src="/product-image/{{this.item}}.jpg" style="width: 5rem; height: 5rem;"></td>
+                    <td>{{this.quantity}}</td>
+                    <td>{{this.product.price}}/-</td>
+                    
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+</section>
+<style>
+    .data {
+        margin-left: 50%;
+        margin-right: 50%;
+    }
+
+    .table {
+        border: solid 2px;
+    }
+</style>
