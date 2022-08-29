@@ -357,7 +357,7 @@ router.get('/order-success', verifyLogin, (req, res) => {
   res.render('users/order-success', { user: req.session.user })
 });
 router.get('/orders', verifyLogin, (req, res) => {
-  order.find({}).lean().then((orders) => {
+  order.find({ userId: objId(req.session.user._id) }).lean().then((orders) => {
     res.render('users/orders', { orders, user: req.session.user })
   })
 });

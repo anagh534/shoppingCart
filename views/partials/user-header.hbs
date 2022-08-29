@@ -9,17 +9,17 @@
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item active">
                 {{#if user}}
-                <a class="nav-link fontdown mt-1 " href="/cart"><span class="text-light fontdown">Cart</span><span
+                <a class="nav-link mt-1" href="/cart"><span class="text-light fontdown">Cart</span><span
                         class="badge badge-success" id="cart-count">{{count}}</span></a>
                 {{/if}}
             </li>
             <li class="nav-item">
                 {{#if user}}
-                <a class="nav-link fontdown mt-1" href="/orders">Orders</a>
+                <a class="nav-link mt-1" href="/orders">Orders</a>
                 {{/if}}
             </li>
         </ul>
-        <div class="dropdown d-lg-block">
+        <div class="dropdown d-lg-block ">
             <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
                 {{#if user}}
