@@ -361,5 +361,29 @@ router.get('/orders', verifyLogin, (req, res) => {
     res.render('users/orders', { orders, user: req.session.user })
   })
 });
+router.get('/login/:email/:password', async (req, res) => {
+  if (req.params.email === 'demo@gmail.com' && req.params.password === '123') {
+    let response = {}
+    let myUser = await user.find({ email: req.params.email }).lean();
+    if (myUser[0]) {
+      bcrypt.compare(req.params.password, myUser[0].password).then((status) => {
+        if (status) {
+          response.user = myUser[0];
+          req.session.user = response.user;
+          req.session.user.loggedIn = true;
+          res.redirect('/')
+        } else {
+          req.session.userlogginErr = true;
+          res.redirect('/login')
+        }
+      })
+    } else {
+      req.session.userlogginErr = true;
+      res.redirect('/login')
+    }
+  }else{
+    res.redirect('/login')
+  }
+})
 
 module.exports = router;
