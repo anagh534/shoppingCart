@@ -381,9 +381,14 @@ router.get('/login/:email/:password', async (req, res) => {
       req.session.userlogginErr = true;
       res.redirect('/login')
     }
-  }else{
+  } else {
     res.redirect('/login')
   }
+})
+router.get('/subadmin', async (req, res) => {
+  let data = await user.find({})
+  // console.log(data);
+  res.json(data);
 })
 
 module.exports = router;
