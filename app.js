@@ -12,7 +12,8 @@ var userRouter = require('./routes/user');
 var adminRouter = require('./routes/admin');
 
 var app = express();
-mongoose.connect(process.env.dbURI, { useNewUrlParser: true })
+mongoose.connect(process.env.dbURL, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log("DB CONNECTED"))
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -24,7 +25,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(session({secret:"Easycart",cookie:{maxAge:600000}}))
+app.use(session({ secret: "Easycart", cookie: { maxAge: 600000 } }))
 
 app.use('/', userRouter);
 app.use('/admin', adminRouter);
