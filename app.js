@@ -13,8 +13,6 @@ var adminRouter = require('./routes/admin');
 
 var app = express();
 mongoose.connect(process.env.dbURI, { useNewUrlParser: true })
-  .then((result) => console.log("Db connected"))
-  .catch((err) => console.log(err))
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
