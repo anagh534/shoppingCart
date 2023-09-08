@@ -1,4 +1,4 @@
-<section>
+{{!-- <section>
     <div class="container mt-5">
         <div class="row">
             {{#each data}}
@@ -11,6 +11,35 @@
                         <p class="card-text">{{this.discription}}</p>
                         {{#if ../user}}
                         <buttion class="btn btn-primary" onclick="addToCart('{{this._id}}')">Add to Cart</buttion>
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</section> --}}
+<section>
+    <div class="container mt-3">
+        <div class="row">
+            {{#each data}}
+            <div class="col-lg-3 col-md-4 col-sm-12 col-12 mt-2 mb-2">
+                <div class="card">
+                    <a href="#" class="text-center">
+                        <img src="{{this.image}}" class="img-fluid p-3" alt="..."
+                            style="object-fit: cover;height: 15rem;">
+                    </a>
+                    <div class="card-body">
+                        <a href="#" class="text-decoration-none text-dark">
+                            <h6 style="white-space: nowrap;overflow: hidden;" class="card-title no-warp">{{this.name}}
+                            </h6>
+                        </a>
+                        <p class="card-text font-weight-bold">₹{{this.price}}</p>
+                        <a href="/cart" class="btn btn-primary">Go to cart</a>
+                        {{#if ../user}}
+                        <button class="btn btn-success" onclick="addToCart('{{this._id}}')">Add to cart</button>
+                        {{else}}
+                        <a href="/login" class="btn btn-success">Add to cart</a>
                         {{/if}}
                     </div>
                 </div>
